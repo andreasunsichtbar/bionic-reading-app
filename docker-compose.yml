@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  bionic-app:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    volumes:
+      - ./logs:/var/log/nginx
+    networks:
+      - bionic-network
+
+  # Optional: Backend-API (falls benötigt)
+  # api:
+  #   image: node:18-alpine
+  #   working_dir: /app
+  #   volumes:
+  #     - ./api:/app
+  #   ports:
+  #     - "3001:3001"
+  #   environment:
+  #     - NODE_ENV=production
+  #     - PORT=3001
+  #   command: npm start
+  #   restart: unless-stopped
+  #   networks:
+  #     - bionic-network
+
+networks:
+  bionic-network:
+    driver: bridge
+
+volumes:
+  logs:
