@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Upload, Download, Languages, FileText, Settings, Play, Pause, CheckCircle, AlertCircle } from 'lucide-react'
+import { Upload, Download, FileText, Settings, Play, Pause, CheckCircle, AlertCircle } from 'lucide-react'
 
 interface TranslationConfig {
   targetLanguage: string
@@ -102,6 +102,14 @@ const Translator: React.FC = () => {
       const randomIndex = Math.floor(Math.random() * (words.length - 2)) + 1
       words[randomIndex] = germanWords[Math.floor(Math.random() * germanWords.length)]
       translated = words.join(' ')
+    }
+    
+    // Beziehe Hinweise in die Simulation ein (z.B. formell/informell)
+    if (notes && notes.toLowerCase().includes('formell')) {
+      translated = translated.replace(/du\b/gi, 'Sie')
+    }
+    if (notes && notes.toLowerCase().includes('locker')) {
+      translated = translated.replace(/Sie\b/gi, 'du')
     }
     
     return translated

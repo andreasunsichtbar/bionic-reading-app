@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Upload, Download, FileText, Settings, Play, CheckCircle, ArrowRight, BookOpen } from 'lucide-react'
+import { Upload, Download, FileText, Settings, Play, CheckCircle, ArrowRight } from 'lucide-react'
 
 interface ProcessingConfig {
   enableTranslation: boolean
